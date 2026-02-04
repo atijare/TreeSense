@@ -40,6 +40,11 @@ def load_model():
     
     return model, class_mapping
 
+@app.route('/', methods=['GET'])
+def root():
+    """Root endpoint for Render health checks"""
+    return jsonify({"status": "ok", "message": "TreeSense API"}), 200
+
 @app.route('/health', methods=['GET'])
 def health():
     """Health check endpoint"""
