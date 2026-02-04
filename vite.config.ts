@@ -5,7 +5,9 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "/TreeSense/",
+  // GitHub Pages serves this repo under /TreeSense/.
+  // Keep dev at root so local URLs stay simple.
+  base: mode === "production" ? "/TreeSense/" : "/",
   server: {
     host: "::",
     port: 8080,
