@@ -11,9 +11,9 @@ export interface PredictionResult {
   preprocessedImageUrl?: string;
 }
 
-// Use relative path - Vite proxy handles routing to Flask server
-// This eliminates ad blocker issues (same-origin requests)
-const API_URL = '/api';
+// Use Render URL in production; allow override via VITE_API_URL.
+// Keep /api for local dev with Vite proxy if desired.
+const API_URL = import.meta.env.VITE_API_URL || 'https://treesense.onrender.com';
 
 /**
  * Check if the API server is running
@@ -101,4 +101,3 @@ export async function predictImage(imageFile: File): Promise<PredictionResult> {
     throw new Error(`API prediction failed: ${error.message}`);
   }
 }
-
