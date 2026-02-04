@@ -122,6 +122,6 @@ if __name__ == '__main__':
         print("Please check that model.keras and class_mapping.json exist")
         exit(1)
     
-    # Run server on port 5000 (Flask default, avoid conflicts with frontend)
-    app.run(host='0.0.0.0', port=5000, debug=True)
-
+    # Render sets PORT; fall back to 5000 for local dev
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)
