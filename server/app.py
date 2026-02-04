@@ -2,6 +2,11 @@
 Flask server for tree leaf classification
 Run this server and the frontend will call it instead of using TensorFlow.js
 """
+import os
+
+# Suppress TensorFlow INFO logs (set before importing TF)
+os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "1")
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import tensorflow as tf
@@ -9,7 +14,6 @@ import numpy as np
 from PIL import Image
 import io
 import json
-import os
 
 app = Flask(__name__)
 CORS(app)  # Allow frontend to call this API
